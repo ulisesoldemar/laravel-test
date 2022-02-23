@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\TareasController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use phpDocumentor\Reflection\Types\Null_;
 
@@ -42,4 +44,14 @@ Route::get('/grabaciones/{nombre}', function ($nombre) {
 //  Con el ? se indica que es un parámetro opcional
 Route::get('/grabaciones/{nombre}/{anio?}', function ($nombre, $anio = NULL) {
     return view('paginas.grabaciones', compact('nombre', 'anio'));
+});
+
+Route::get('/tareas', [TareasController::class, 'index']);
+
+Route::get('/tareas/create/', [TareasController::class, 'create']);
+
+Route::post('/tareas/store', function() {
+    // Validación y limpieza
+    // Guardar a DB
+    // Redireccionar
 });
