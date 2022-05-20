@@ -41,4 +41,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function tareas()
+    {
+        // hasMany nos permite retornar todas las tareas del registro
+        // del usuario, de 1-N
+        return $this->hasMany(Tarea::class);
+    }
 }

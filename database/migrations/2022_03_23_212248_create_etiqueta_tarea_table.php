@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tareas', function (Blueprint $table) {
-            $table->id();
-            $table->string('tarea');
-            $table->text('descripcion');
-            $table->string('categoria', 50);
-            $table->timestamps();
+        Schema::create('etiqueta_tarea', function (Blueprint $table) {
+            // Constrained nos permite crear integridad referencial
+            // evitando que se borre si ya hay una referencia
+            $table->foreignId('etiqueta_id')->constrained();
+            $table->foreignId('tarea_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tareas');
+        Schema::dropIfExists('etiqueta_tarea');
     }
 };

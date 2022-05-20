@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TareaController;
 use App\Http\Controllers\TareasController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -46,12 +47,15 @@ Route::get('/grabaciones/{nombre}/{anio?}', function ($nombre, $anio = NULL) {
     return view('paginas.grabaciones', compact('nombre', 'anio'));
 });
 
-Route::get('/tareas', [TareasController::class, 'index']);
+// Genera todas las rutas disponibles
+Route::resource('/tareas', TareaController::class);
 
-Route::get('/tareas/create/', [TareasController::class, 'create']);
+// Route::get('/tareas', [TareasController::class, 'index']);
 
-Route::post('/tareas/store', function() {
-    // Validación y limpieza
-    // Guardar a DB
-    // Redireccionar
-});
+// Route::get('/tareas/create/', [TareasController::class, 'create']);
+
+// Route::post('/tareas/store', function() {
+//     // Validación y limpieza
+//     // Guardar a DB
+//     // Redireccionar
+// });
